@@ -1,0 +1,19 @@
+{
+  "name": "aventuras-san-gil",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharing5438l-bot/aventuras-sangil.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharing5438l-bot/aventuras-sangil/issues"
+  },
+  "homepage": "https://github.com/sharing5438l-bot/aventuras-sangil#readme",
+  "description": ""
+}
