@@ -138,6 +138,12 @@ app.post('/actividades', (req, res) => {
     res.status(201).json(nueva);
 });
 
+app.use((req, res) => {
+    res.status(404).json({ mensaje: `No existe la ruta ${req.method} ${req.url}` });
+});
+
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
 });
+
+
