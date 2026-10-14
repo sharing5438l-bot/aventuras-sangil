@@ -116,7 +116,7 @@
 //   console.log(`Servidor de Aventuras San Gil corriendo en http://localhost:${PORT}`);
 // });
 
-// metdo 5
+//5 y 6 y retos
 
 const express = require('express');
 const app = express();
@@ -124,26 +124,58 @@ const app = express();
 app.use(express.json());
 
 let actividades = [
-    { id: 1, nombre: "Rafting en el río Fonce", tipo: "agua", precio: 60000 }
+{ id: 1, nombre: "Rafting en el río Fonce", tipo: "agua", precio: 60000 },
+{ id: 2, nombre: "Caminata ecológica por el Rodadero", tipo: "tierra", precio: 0 }
 ];
 
+app.get('/estado', (req, res) => {
+res.json({
+servidor: "ok",
+hora: new Date().toISOString(),
+totalActividades: actividades.length
+});
+});
+
 app.get('/actividades', (req, res) => {
-    res.json(actividades);
+res.json(actividades);
+});
+
+app.get('/actividades/gratis', (req, res) => {
+const gratis = actividades.filter(a => a.precio === 0);
+res.json(gratis);
 });
 
 app.post('/actividades', (req, res) => {
-    console.log('Body recibido:', req.body);
-    const nueva = { id: actividades.length + 1, ...req.body };
-    actividades.push(nueva);
-    res.status(201).json(nueva);
+const { nombre, tipo, precio } = req.body;
+
+
+if (!nombre) {
+return res.status(400).json({ mensaje: "Falta el campo obligatorio: nombre" });
+}
+if (!tipo) {
+return res.status(400).json({ mensaje: "Falta el campo obligatorio: tipo" });
+}
+
+
+if (typeof precio !== 'number' || isNaN(precio) || precio < 0) {
+return res.status(400).json({ mensaje: "El precio debe ser un número válido y no puede ser negativo" });
+}
+
+const nueva = {
+id: actividades.length + 1,
+nombre,
+tipo,
+precio
+};
+
+actividades.push(nueva);
+res.status(201).json(nueva);
 });
 
 app.use((req, res) => {
-    res.status(404).json({ mensaje: `No existe la ruta ${req.method} ${req.url}` });
+res.status(404).json({ mensaje: `No existe la ruta ${req.method} ${req.url}` });
 });
 
 app.listen(3000, () => {
-    console.log('Servidor corriendo en http://localhost:3000');
+console.log('Servidor corriendo en http://localhost:3000');
 });
-
-
