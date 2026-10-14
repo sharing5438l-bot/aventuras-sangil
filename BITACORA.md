@@ -41,3 +41,6 @@ Al reiniciar el servidor con --watch, la actividad creada desaparece, ya que los
 
 ##p11
 Si muevo el bloque del 404 al inicio del archivo (antes de las rutas), ninguna ruta va a funcionar y todas devolverán el error 404. Esto pasa porque Express lee el código de arriba hacia abajo de manera secuencial; como el middleware 404 intercepta todas las peticiones con un app.use() general sin dejar pasar el flujo, la aplicación se detiene ahí y nunca alcanza a evaluar las rutas de /actividades.
+
+Conclusion:
+Express atiende las peticiones haciendo la fila en estricto **orden**: revisa quién coincide y, si la ruta no le toca a él, le echa el **next** al parcero de al lado para que siga la jugada.
