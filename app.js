@@ -117,3 +117,27 @@
 // });
 
 // metdo 5
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+let actividades = [
+    { id: 1, nombre: "Rafting en el río Fonce", tipo: "agua", precio: 60000 }
+];
+
+app.get('/actividades', (req, res) => {
+    res.json(actividades);
+});
+
+app.post('/actividades', (req, res) => {
+    console.log('Body recibido:', req.body);
+    const nueva = { id: actividades.length + 1, ...req.body };
+    actividades.push(nueva);
+    res.status(201).json(nueva);
+});
+
+app.listen(3000, () => {
+    console.log('Servidor corriendo en http://localhost:3000');
+});

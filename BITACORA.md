@@ -30,4 +30,11 @@ Recibe el estado 404 Not Found con el mensaje de que la actividad no existe.
 En la terminal: Muestra un error grave indicando que el servidor intentó enviar dos respuestas para una misma petición.
 El return es obligatorio para cortar la ejecución e impedir que el código siga de largo hasta el res.json(actividad).
 
-bfdbfj
+##p8: 
+?tipo=agua devuelve la lista (200). ?tipo=AGUA da vacío por las mayúsculas (se soluciona con .toLowerCase()). Para ?tipo=fuego debe responder 200 con lista vacía y no 404, porque la ruta es válida aunque no haya registros.
+
+##p9: 
+Recibiré código 201 Created con el JSON de la nueva actividad y su ID. En la terminal se imprimirá el body gracias a que configuré app.use(express.json()).
+
+##10: 
+Al reiniciar el servidor con --watch, la actividad creada desaparece, ya que los datos solo viven temporalmente en la memoria RAM.
