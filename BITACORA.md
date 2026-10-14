@@ -30,3 +30,4 @@ Recibe el estado 404 Not Found con el mensaje de que la actividad no existe.
 En la terminal: Muestra un error grave indicando que el servidor intentó enviar dos respuestas para una misma petición.
 El return es obligatorio para cortar la ejecución e impedir que el código siga de largo hasta el res.json(actividad).
 
+bfdbfj
