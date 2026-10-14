@@ -36,5 +36,8 @@ El return es obligatorio para cortar la ejecución e impedir que el código siga
 ##p9: 
 Recibiré código 201 Created con el JSON de la nueva actividad y su ID. En la terminal se imprimirá el body gracias a que configuré app.use(express.json()).
 
-##10: 
+##p10: 
 Al reiniciar el servidor con --watch, la actividad creada desaparece, ya que los datos solo viven temporalmente en la memoria RAM.
+
+##p11
+Si muevo el bloque del 404 al inicio del archivo (antes de las rutas), ninguna ruta va a funcionar y todas devolverán el error 404. Esto pasa porque Express lee el código de arriba hacia abajo de manera secuencial; como el middleware 404 intercepta todas las peticiones con un app.use() general sin dejar pasar el flujo, la aplicación se detiene ahí y nunca alcanza a evaluar las rutas de /actividades.
